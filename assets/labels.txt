@@ -1,0 +1,20 @@
+0 Afghan Hound
+1 African Hunting Dog 
+2 Basset
+3 Beagle
+4 Black and Tan  Connhound
+5 Blenheim Spaniel
+6 Blood Hound
+7 Bluetick
+8 Borzoi
+9 Brabancon Griffon
+10 Cardigon
+11 Chihuahua
+12 Chow
+13 Dhole
+14 Dingo
+15 English Foxhound
+16 Great Pyrenees
+17 Ibizan Hound
+18 Irish Wolfhound
+19 Keeshond
