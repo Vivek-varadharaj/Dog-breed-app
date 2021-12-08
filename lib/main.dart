@@ -1,27 +1,13 @@
-
 import 'package:dog_breed_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
-
-
 void main() async {
-   WidgetsFlutterBinding.ensureInitialized();
- 
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  // This widget is the root of your application.
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-
-
-
-  
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,5 +17,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-

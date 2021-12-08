@@ -12,58 +12,64 @@ class DogSuggestionWidget extends StatelessWidget {
     co = co.round().toDouble();
     Size size = MediaQuery.of(context).size;
     return Container(
-      width: size.width * 0.85,
+      margin: EdgeInsets.only(top: 20),
+    
+      alignment: Alignment.center,
+                
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(children: [
-            Container(
-                alignment: Alignment.center,
-                height: size.height * 0.07,
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                          width: 60,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Image.file(dog, fit: BoxFit.cover)),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${dogsList["label"]}"
-                                  .replaceAll(RegExp(r'[0-9]'), ''),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                    width: size.width / 2.5,
-                                    child: LinearProgressIndicator(
-                                      value: co / 100,
-                                      backgroundColor:
-                                          Colors.black.withOpacity(0.5),
-                                      color: Colors.black,
-                                    )),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                Text("$co %"),
-                              ],
-                            )
-                          ],
+          Expanded(
+            child: Column(children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 60,
+                      width: 60,
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Image.asset("assets/" + dogsList["index"].toString() + ".jpg", fit: BoxFit.cover)),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${dogsList["label"]}"
+                              .replaceAll(RegExp(r'[0-9]'), ''),
                         ),
-                      ),
-                      Icon(Icons.check_circle)
-                    ],
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                                width: size.width / 2.5,
+                                child: LinearProgressIndicator(
+                                  value: co / 100,
+                                  backgroundColor:
+                                      Colors.black.withOpacity(0.5),
+                                  color: Colors.black,
+                                )),
+                           
+                            Padding(
+                              padding: const EdgeInsets.only(left:8.0),
+                              child: Text("$co %"),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                )),
-          ]),
+                  Padding(
+                    padding: const EdgeInsets.only(left:15.0),
+                    child: Icon(Icons.check_circle,color:Colors.grey),
+                  )
+                ],
+              ),
+            ]),
+          ),
         ],
       ),
     );

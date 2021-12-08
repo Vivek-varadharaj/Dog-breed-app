@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:dog_breed_app/classifier/classifier.dart';
 import 'package:dog_breed_app/photo_manager_helper/photo_manager_helper.dart';
 import 'package:dog_breed_app/screens/dogs_suggestion_screen.dart';
@@ -18,21 +19,21 @@ class _AddImageScreenState extends State<AddImageScreen> {
   Classifier? _classifier ;
   PhotoManagerHelper? photos;
   List<AssetEntity> images = [];
-  void getImages() async {
-    images = await photos!.fetchPhotos();
+  void getImages(context) async {
+    images = await photos!.fetchPhotos(context);
     setState(() {});
   }
 
   ImagePicker _picker = ImagePicker();
   File? _image;
   List<dynamic> _outputs=[];
-  pickImage() async {
+  pickImage(BuildContext context) async {
     var image = await _picker.pickImage(source: ImageSource.camera);
     if (image == null) return null;
     setState(() {
       _image = File(image.path);
     });
-    var outPut = await _classifier!.classifyImage(File(image.path));
+    var outPut = await _classifier!.classifyImage(File(image.path,),context);
     setState(() {
       _outputs = outPut;
     });
@@ -47,15 +48,15 @@ class _AddImageScreenState extends State<AddImageScreen> {
      _classifier = Classifier();
     _loading = true;
 
-    _classifier!.loadModel().then((value) {
+    _classifier!.loadModel(context).then((value) {
       setState(() {
         _loading = false;
       });
     });
     photos = PhotoManagerHelper();
    
-    getImages();
-    _classifier!.loadModel();
+    getImages(context);
+    _classifier!.loadModel(context);
   }
 
   @override
@@ -78,7 +79,7 @@ class _AddImageScreenState extends State<AddImageScreen> {
           Container(
             child: GestureDetector(
                 onTap: () async {
-                  await pickImage();
+                  await pickImage(context);
                   if(_image == null){
                     return null;
                   }
@@ -107,7 +108,7 @@ class _AddImageScreenState extends State<AddImageScreen> {
                     onTap: () async {
                       File? image = await images[index].file;
                       List<dynamic> outPut =
-                          await _classifier!.classifyImage(image!);
+                          await _classifier!.classifyImage(image!, context);
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) =>
                               DogsSuggestionScreen(image, outPut)));

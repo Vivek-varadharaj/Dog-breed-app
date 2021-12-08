@@ -1,6 +1,5 @@
 import 'dart:io';
-
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:tflite/tflite.dart';
 
 class Classifier {
@@ -16,18 +15,22 @@ class Classifier {
 
   final String _model = "assets/model_unquant.tflite";
   final String _text = "assets/labels.txt";
-  loadModel() async {
-   
-    await Tflite.loadModel(
+  loadModel(context) async {
+   try{
+     await Tflite.loadModel(
       model: _model,
       labels: _text,
     );
+   }catch(e){
+     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Some error occured")));
+   }
+    
   }
 
   
    // function for identifying the dog breed and returning
   //  list of outputs
-  classifyImage(File image) async {
+  classifyImage(File image, BuildContext context) async {
    
    try{ var output = await Tflite.runModelOnImage(
       path: image.path,
@@ -38,6 +41,7 @@ class Classifier {
     return output;
   } catch(e){
     print ("error");
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Some error occured")));
   }
   }
 }

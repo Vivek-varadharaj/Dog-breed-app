@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dog_breed_app/screens/home_screen.dart';
 import 'package:dog_breed_app/widgets/dog_suggestion_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -39,10 +40,13 @@ class _DogsSuggestionScreenState extends State<DogsSuggestionScreen> {
           color: Colors.black,
         ),
       ),
-      body: SizedBox(
-        width: size.width,
-        child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.center, 
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
           Container(
+            
             clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
             width: size.width * 0.9,
@@ -78,8 +82,25 @@ class _DogsSuggestionScreenState extends State<DogsSuggestionScreen> {
               : Container(),
           dogsWithConfidence50.length == 1
               ? Text("We have only 1 suggestion")
-              : Container()
-        ]),
+              : Container(),
+               SizedBox(
+            height: 10,
+          ),
+               Center(
+        child: ElevatedButton(
+          onPressed: () async {
+                 Navigator.pushAndRemoveUntil(context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        (Route<dynamic> route) => false,
+                        );
+          },
+          child: Text("Done"),
+          style: ElevatedButton.styleFrom(
+              primary: Colors.black,
+              padding: EdgeInsets.symmetric(horizontal: 80)),
+        ),
+      ),
+        ],),
       ),
     );
   }

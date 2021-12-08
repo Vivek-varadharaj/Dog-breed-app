@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 class PhotoManagerHelper {
@@ -10,8 +11,9 @@ class PhotoManagerHelper {
 
   
  // function for fetching photos from gallery
-  Future<List<AssetEntity>> fetchPhotos() async {
-    final albums = await PhotoManager.getAssetPathList(
+  Future<List<AssetEntity>> fetchPhotos(BuildContext context) async {
+    try{
+       final albums = await PhotoManager.getAssetPathList(
         onlyAll: true,
         filterOption: FilterOptionGroup(
             videoOption: FilterOption(
@@ -23,5 +25,10 @@ class PhotoManagerHelper {
       end: 30,
     );
     return recentAssets;
+    }catch(e){
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Some error occured")));
+      return [];
+    }
+   
   }
 }
