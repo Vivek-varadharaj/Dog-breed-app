@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+// photo manages package used to build the custom gallery
 import 'package:photo_manager/photo_manager.dart';
 
 class PhotoManagerHelper {

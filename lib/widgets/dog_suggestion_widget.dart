@@ -8,8 +8,8 @@ class DogSuggestionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double co = (dogsList["confidence"] * 100);
-    co = co.round().toDouble();
+    double confidence = (dogsList["confidence"] * 100);
+    confidence = confidence.round().toDouble();
     Size size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.only(top: 20),
@@ -30,6 +30,8 @@ class DogSuggestionWidget extends StatelessWidget {
                       clipBehavior: Clip.hardEdge,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15)),
+                          // converting the index got from model to string and showing 
+                          // the corresponding picture of the dog
                       child: Image.asset("assets/" + dogsList["index"].toString() + ".jpg", fit: BoxFit.cover)),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
@@ -37,6 +39,8 @@ class DogSuggestionWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // uses regular expression to avoid the index
+                        // from the dog's name.
                         Text(
                           "${dogsList["label"]}"
                               .replaceAll(RegExp(r'[0-9]'), ''),
@@ -47,7 +51,7 @@ class DogSuggestionWidget extends StatelessWidget {
                             Container(
                                 width: size.width / 2.5,
                                 child: LinearProgressIndicator(
-                                  value: co / 100,
+                                  value: confidence / 100,
                                   backgroundColor:
                                       Colors.black.withOpacity(0.5),
                                   color: Colors.black,
@@ -55,7 +59,7 @@ class DogSuggestionWidget extends StatelessWidget {
                            
                             Padding(
                               padding: const EdgeInsets.only(left:8.0),
-                              child: Text("$co %"),
+                              child: Text("$confidence %"),
                             ),
                           ],
                         )

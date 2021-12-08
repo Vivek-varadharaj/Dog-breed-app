@@ -1,17 +1,19 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+
+// tensor flow package for using tflite models
 import 'package:tflite/tflite.dart';
 
 class Classifier {
 
   // creating a singleton class
 
-  // static final Classifier? _classifier = Classifier._getClassifier();
-  // Classifier._getClassifier();
+  static final Classifier? _classifier = Classifier._getClassifier();
+  Classifier._getClassifier();
 
-  // factory Classifier() {
-  //   return _classifier!;
-  // }
+  factory Classifier() {
+    return _classifier!;
+  }
 
   final String _model = "assets/model_unquant.tflite";
   final String _text = "assets/labels.txt";

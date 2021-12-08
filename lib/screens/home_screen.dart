@@ -1,7 +1,10 @@
 import 'dart:typed_data';
-
-import 'package:dog_breed_app/screens/add_image_screen.dart';
 import 'package:flutter/material.dart';
+// screens and widgets from project
+import 'package:dog_breed_app/screens/add_image_screen.dart';
+
+
+// external package used for making custom gallery
 import 'package:photo_manager/photo_manager.dart';
 
 // home screen containing a button and an appbar

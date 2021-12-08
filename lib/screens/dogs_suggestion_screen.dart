@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'package:flutter/material.dart';
 
+// screens and widgets from project
 import 'package:dog_breed_app/screens/home_screen.dart';
 import 'package:dog_breed_app/widgets/dog_suggestion_widget.dart';
-import 'package:flutter/material.dart';
+
 
 class DogsSuggestionScreen extends StatefulWidget {
  final File dog;
@@ -20,6 +22,7 @@ class _DogsSuggestionScreenState extends State<DogsSuggestionScreen> {
     dogsWithConfidence50 = new List<dynamic>.from(widget.dogsList);
 
     super.initState();
+    // removing suggestion that doesn't have 50% confidence
     dogsWithConfidence50.removeWhere((doggy) => doggy["confidence"] < 0.5);
   }
 
@@ -71,6 +74,9 @@ class _DogsSuggestionScreenState extends State<DogsSuggestionScreen> {
               .toList(),
           ],
         ),) ,
+
+        //  giving appropriate messages according to the 
+        // suggestions we have
           SizedBox(
             height: 10,
           ),
@@ -89,6 +95,7 @@ class _DogsSuggestionScreenState extends State<DogsSuggestionScreen> {
                Center(
         child: ElevatedButton(
           onPressed: () async {
+            // pushes back to home screen and pops all othe routes
                  Navigator.pushAndRemoveUntil(context,
                         MaterialPageRoute(builder: (context) => HomeScreen()),
                         (Route<dynamic> route) => false,
