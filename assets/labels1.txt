@@ -1,8 +1,8 @@
 0 Afghan Hound
-1 African Hunting Dog
+1 African Hunting Dog 
 2 Basset
 3 Beagle
-4 Black and Tan Coonhound
+4 Black and Tan  Connhound
 5 Blenheim Spaniel
 6 Blood Hound
 7 Bluetick
@@ -18,4 +18,3 @@
 17 Ibizan Hound
 18 Irish Wolfhound
 19 Keeshond
-20 Others

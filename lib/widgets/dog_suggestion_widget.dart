@@ -8,10 +8,11 @@ class DogSuggestionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(dogsList);
     double confidence = (dogsList["confidence"] * 100);
     confidence = confidence.round().toDouble();
     Size size = MediaQuery.of(context).size;
-    return Container(
+    return  Container(
       margin: EdgeInsets.only(top: 20),
     
       alignment: Alignment.center,

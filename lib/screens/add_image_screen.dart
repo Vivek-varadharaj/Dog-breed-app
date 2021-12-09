@@ -81,23 +81,45 @@ class _AddImageScreenState extends State<AddImageScreen> {
       body: ListView(
         children: [
           Container(
-            child: GestureDetector(
-                onTap: () async {
-                  await pickImage(context);
-                  if (_image == null) {
-                    return null;
-                  }
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              DogsSuggestionScreen(_image!, _outputs)));
-                },
-                child: Icon(
-                  Icons.camera_alt_rounded,
-                  color: Colors.black,
-                  size: 80,
-                )),
+            child: Row(
+              children: [
+                GestureDetector(
+                    onTap: () async {
+                      await pickImage(context);
+                      if (_image == null) {
+                        return null;
+                      }
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  DogsSuggestionScreen(_image!, _outputs)));
+                    },
+                    child: Icon(
+                      Icons.camera_alt_rounded,
+                      color: Colors.black,
+                      size: 80,
+                    )),
+
+                    GestureDetector(
+                    onTap: () async {
+                      await pickImage(context);
+                      if (_image == null) {
+                        return null;
+                      }
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  DogsSuggestionScreen(_image!, _outputs)));
+                    },
+                    child: Icon(
+                      Icons.imagesearch_roller_outlined,
+                      color: Colors.black,
+                      size: 80,
+                    )),
+              ],
+            ),
           ),
           SizedBox(
             height: 20,

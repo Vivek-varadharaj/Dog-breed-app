@@ -24,6 +24,7 @@ class _DogsSuggestionScreenState extends State<DogsSuggestionScreen> {
     super.initState();
     // removing suggestion that doesn't have 50% confidence
     dogsWithConfidence50.removeWhere((doggy) => doggy["confidence"] < 0.5);
+    dogsWithConfidence50.removeWhere((doggy) => doggy["index"]==20);
   }
 
   @override
@@ -62,7 +63,7 @@ class _DogsSuggestionScreenState extends State<DogsSuggestionScreen> {
           SizedBox(
             height: 30,
           ),
-        Container(
+       dogsWithConfidence50.length !=0 ? Container(
            padding: EdgeInsets.symmetric(vertical: 30,horizontal: 20),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(8),
             color: Colors.grey.withOpacity(0.1
@@ -73,7 +74,20 @@ class _DogsSuggestionScreenState extends State<DogsSuggestionScreen> {
               .map((doggy) => DogSuggestionWidget(doggy, widget.dog))
               .toList(),
           ],
-        ),) ,
+        ),) :  Container(
+         margin: EdgeInsets.only(top: 20),
+    
+      alignment: Alignment.center,
+      child: Row(
+      children: [
+        Container(
+          height: 60,
+          width: 60,
+          child: Image.asset("assets/20.jpeg")),
+          SizedBox(width: 30,),
+        Text("No Match")
+      ],
+    ),),
 
         //  giving appropriate messages according to the 
         // suggestions we have
